@@ -2,9 +2,9 @@
 A robust, scalable, and intelligent system for parsing resumes from various formats and calculating semantic match scores against job descriptions. Leverages modern AI techniques including Large Language Models (LLMs) and NLP (Hugging Face Transformers) built on a high-throughput microservice architecture.
 
 **📚 Resources**
-Video Presentation: Watch here
+Video Presentation: (https://drive.google.com/file/d/1qcZz8jj2GpR4VLJB76wlJ2l84qOD9uCF/view?usp=drive_link)
 
-Project Presentation: View slides
+Project Presentation: (https://drive.google.com/file/d/1qcZz8jj2GpR4VLJB76wlJ2l84qOD9uCF/view?usp=drive_link)
 
 **🏗️ Architecture: Decoupled Microservices**
 The system is orchestrated by Docker Compose and designed for resilience and scalability by decoupling the fast API layer from the heavy processing layer.
