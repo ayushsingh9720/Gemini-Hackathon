@@ -1,59 +1,39 @@
-🚀 **AI-Powered Resume Parser and Job Matcher**
+**🚀 AI-Powered Resume Parser and Job Matcher**
+A robust, scalable, and intelligent system for parsing resumes from various formats and calculating semantic match scores against job descriptions. Leverages modern AI techniques including Large Language Models (LLMs) and NLP (Hugging Face Transformers) built on a high-throughput microservice architecture.
 
-Project Overview
+**📚 Resources**
+Video Presentation: Watch here
 
-This project implements a robust, scalable, and intelligent system for parsing resumes from various formats and calculating a semantic match score against job descriptions. The solution leverages modern techniques, including Large Language Models (LLM) and NLP (Hugging Face Transformers), and is built on a high-throughput microservice architecture.
+Project Presentation: View slides
 
-video presentation - https://drive.google.com/file/d/1qcZz8jj2GpR4VLJB76wlJ2l84qOD9uCF/view?usp=drive_link
-presentation - https://drive.google.com/file/d/1AASKFCT2fu8jQY_ObgsgvLqRrbiIHVvS/view?usp=sharing
+**🏗️ Architecture: Decoupled Microservices**
+The system is orchestrated by Docker Compose and designed for resilience and scalability by decoupling the fast API layer from the heavy processing layer.
 
-🏗️ Architecture: Decoupled Microservices
-
-The entire system is orchestrated by Docker Compose and designed for resilience and scalability by decoupling the fast API layer from the heavy processing layer.
-
-Service
-
-Technology
-
-Role
-
-api
-
-FastAPI (Python)
-
-Handles all client requests, file validation, and immediately queues parsing jobs to Celery.
-
-worker
-
-Celery / PyTorch
-
-The decoupled processing engine. Executes time-consuming tasks: Text Extraction, AI Parsing, and Matching.
-
-db
-
-PostgreSQL
-
-Persistent storage for parsed resume data, utilizing JSONB for a flexible, nested schema.
-
-redis
-
-Redis
-
-Serves as the high-speed message broker for Celery, enabling asynchronous task queuing and communication.
-
+Service	Technology	Role
+api	FastAPI (Python)	Handles client requests, file validation, and queues parsing jobs to Celery
+worker	Celery / PyTorch	Decoupled processing engine for text extraction, AI parsing, and matching
+db	PostgreSQL	Persistent storage for parsed resume data with JSONB for flexible schema
+redis	Redis	High-speed message broker for Celery task queuing
 ⚙️ Setup and Installation
-
 Prerequisites
-
-You must have the following tools installed and running:
+Ensure you have the following installed:
 
 Docker Desktop (or Docker Engine)
 
 Docker Compose
 
-One-Command Setup
+Quick Start
+Navigate to the project root directory and run the setup script:
 
-Navigate to the project root directory and execute the setup script. This script handles the image build, dependency installation (including large AI libraries), service startup, and database initialization.
-
+bash
 chmod +x setup.sh
 ./setup.sh
+The script will:
+
+Build Docker images
+
+Install dependencies (including AI libraries)
+
+Start all services
+
+Initialize the database
