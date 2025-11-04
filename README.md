@@ -1,26 +1,50 @@
-AI-Powered Resume Parser and Job Matcher
+🚀 AI-Powered Resume Parser and Job Matcher
 
 Project Overview
 
-This project implements a robust, scalable, and intelligent system for parsing resumes from various formats and calculating a semantic match score against job descriptions using state-of-the-art Large Language Model (LLM) and NLP techniques (Hugging Face Transformers).
+This project implements a robust, scalable, and intelligent system for parsing resumes from various formats and calculating a semantic match score against job descriptions. The solution leverages modern techniques, including Large Language Models (LLM) and NLP (Hugging Face Transformers), and is built on a high-throughput microservice architecture.
 
-The solution is built on a modern microservice architecture designed for high throughput and reliability.
+video presentation - https://drive.google.com/file/d/1qcZz8jj2GpR4VLJB76wlJ2l84qOD9uCF/view?usp=drive_link
 
-Architecture
+🏗️ Architecture: Decoupled Microservices
 
-The system is composed of four containerized services orchestrated by Docker Compose:
+The entire system is orchestrated by Docker Compose and designed for resilience and scalability by decoupling the fast API layer from the heavy processing layer.
 
-api (FastAPI): Handles all client requests, authentication, file validation, and queues parsing jobs.
+Service
 
-worker (Celery): The decoupled processing engine. It executes the time-consuming tasks (Text Extraction, AI Parsing, Matching).
+Technology
 
-db (PostgreSQL): Persistent storage for parsed resume data (using JSONB for flexible schema).
+Role
 
-redis: Used as the message broker for Celery, enabling asynchronous task queuing.
+api
 
-Setup and Installation
+FastAPI (Python)
+
+Handles all client requests, file validation, and immediately queues parsing jobs to Celery.
+
+worker
+
+Celery / PyTorch
+
+The decoupled processing engine. Executes time-consuming tasks: Text Extraction, AI Parsing, and Matching.
+
+db
+
+PostgreSQL
+
+Persistent storage for parsed resume data, utilizing JSONB for a flexible, nested schema.
+
+redis
+
+Redis
+
+Serves as the high-speed message broker for Celery, enabling asynchronous task queuing and communication.
+
+⚙️ Setup and Installation
 
 Prerequisites
+
+You must have the following tools installed and running:
 
 Docker Desktop (or Docker Engine)
 
@@ -28,85 +52,7 @@ Docker Compose
 
 One-Command Setup
 
-Navigate to the project root directory and execute the setup script:
+Navigate to the project root directory and execute the setup script. This script handles the image build, dependency installation (including large AI libraries), service startup, and database initialization.
 
 chmod +x setup.sh
 ./setup.sh
-
-The script will automatically clean up, build the required Docker images (be patient, the initial build takes time to install PyTorch/Transformers), start the four services, and run the database table creation.
-
-Core Endpoints
-
-The API documentation is fully compliant with OpenAPI and available via Swagger UI.
-
-Method
-
-Endpoint
-
-Description
-
-GET
-
-/health
-
-API service status check.
-
-POST
-
-/resumes/upload
-
-Uploads a file (PDF/DOCX/TXT/Image), saves it, and queues the parsing job.
-
-GET
-
-/resumes/{id}
-
-Retrieves the full structured JSON data of a parsed resume.
-
-GET
-
-/resumes/{id}/status
-
-Checks the status of a parsing job (processing or completed).
-
-POST
-
-/resumes/{id}/match
-
-(Advanced) Calculates a semantic match score against a provided Job Description JSON.
-
-AI/ML Implementation Details
-
-Data Extraction (Core)
-
-Technique: Named Entity Recognition (NER) pipeline from Hugging Face Transformers (dslim/bert-base-NER).
-
-Purpose: Converts raw text into structured fields (Name, Title, Skills, Education).
-
-Resume-Job Matching (Advanced)
-
-Technique: Sentence Embedding and Cosine Similarity.
-
-Model: all-MiniLM-L6-v2 (Sentence Transformer).
-
-Logic: Converts resume text and job description text into numerical vectors and calculates semantic closeness for the overallScore.
-
-Feature Benchmarks
-
-Metric
-
-Target
-
-Result (Demo)
-
-Response Time
-
-< 5 seconds
-
-~10 seconds (Initial Run, including model load)
-
-Accuracy
-
-> 85%
-
-75-80% (Simulated NER model. Requires fine-tuning for > 85%)
