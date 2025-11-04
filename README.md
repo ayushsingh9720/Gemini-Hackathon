@@ -5,6 +5,7 @@ Project Overview
 This project implements a robust, scalable, and intelligent system for parsing resumes from various formats and calculating a semantic match score against job descriptions. The solution leverages modern techniques, including Large Language Models (LLM) and NLP (Hugging Face Transformers), and is built on a high-throughput microservice architecture.
 
 video presentation - https://drive.google.com/file/d/1qcZz8jj2GpR4VLJB76wlJ2l84qOD9uCF/view?usp=drive_link
+presentation - https://drive.google.com/file/d/1AASKFCT2fu8jQY_ObgsgvLqRrbiIHVvS/view?usp=sharing
 
 🏗️ Architecture: Decoupled Microservices
 
