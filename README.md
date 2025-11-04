@@ -1,4 +1,4 @@
-🚀 AI-Powered Resume Parser and Job Matcher
+🚀 **AI-Powered Resume Parser and Job Matcher**
 
 Project Overview
 
