@@ -25,8 +25,11 @@ Quick Start
 Navigate to the project root directory and run the setup script:
 
 bash
+
 chmod +x setup.sh
+
 ./setup.sh
+
 The script will:
 
 Build Docker images
